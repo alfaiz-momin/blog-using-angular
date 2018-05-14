@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+
+  <a class="navbar-brand" routerLink="/blog">Blog</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+    </ul>
+    <ul *ngIf="auth.afAuth.authState | async as user; else showLogin"
+     class='navbar-nav my-2 my-lg-0'>
+     <span class="user-name"><a routerLink="/dashboard">Write a Post</a></span>
+      <li class='nav-item'>
+          <a class="nav-link" (click)="auth.logout()">Logout</a>
+      </li>
+    </ul>
+    <ng-template #showLogin>
+      <ul class='navbar-nav my-2 my-lg-0'>
+        <li class='nav-item' style="cursor: pointer;">
+            <a class="nav-link" (click)="auth.login()">Login with Google</a>
+        </li>
+      </ul>
+    </ng-template>
+  </div>
+
+  </div>
+</nav>
